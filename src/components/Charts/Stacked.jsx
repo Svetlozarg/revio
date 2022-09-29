@@ -1,7 +1,20 @@
 import React from 'react';
-import { ChartComponent, SeriesCollectionDirective, SeriesDirective, Inject, Legend, Category, StackingColumnSeries, Tooltip } from '@syncfusion/ej2-react-charts';
+import {
+  ChartComponent,
+  SeriesCollectionDirective,
+  SeriesDirective,
+  Inject,
+  Legend,
+  Category,
+  StackingColumnSeries,
+  Tooltip,
+} from '@syncfusion/ej2-react-charts';
 
-import { stackedCustomSeries, stackedPrimaryXAxis, stackedPrimaryYAxis } from '../../data/dummy';
+import {
+  stackedCustomSeries,
+  stackedPrimaryXAxis,
+  stackedPrimaryYAxis,
+} from '../../assets/data';
 import { useStateContext } from '../../contexts/ContextProvider';
 
 const Stacked = ({ width, height }) => {
@@ -22,7 +35,9 @@ const Stacked = ({ width, height }) => {
       <Inject services={[StackingColumnSeries, Category, Legend, Tooltip]} />
       <SeriesCollectionDirective>
         {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-        {stackedCustomSeries.map((item, index) => <SeriesDirective key={index} {...item} />)}
+        {stackedCustomSeries.map((item, index) => (
+          <SeriesDirective key={index} {...item} />
+        ))}
       </SeriesCollectionDirective>
     </ChartComponent>
   );

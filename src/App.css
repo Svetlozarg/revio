@@ -45,3 +45,202 @@
 .e-input-group:not(.e-float-icon-left), .e-input-group.e-success:not(.e-float-icon-left), .e-input-group.e-warning:not(.e-float-icon-left), .e-input-group.e-error:not(.e-float-icon-left), .e-input-group.e-control-wrapper:not(.e-float-icon-left), .e-input-group.e-control-wrapper.e-success:not(.e-float-icon-left), .e-input-group.e-control-wrapper.e-warning:not(.e-float-icon-left), .e-input-group.e-control-wrapper.e-error:not(.e-float-icon-left){
   border: none;
 }
+
+
+/* Login Page */
+.login-page {
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(rgba(0, 0, 0, .4), rgba(0, 0, 0, .4)), url(./assets/login.jpg);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: #fff;
+  overflow: hidden;
+}
+
+.login-page .login-left {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 0 8rem;
+}
+
+.login-page .login-left h2 {
+  font-size: 3rem;
+}
+
+.login-page .login-left p {
+  font-size: 1.1rem;
+  width: 80%;
+  margin-top: 1.5rem;
+}
+
+.login-page .login-right {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  color: #000;
+  background-color: #fff;
+  padding: 2rem;
+}
+
+.login-page .login-right .form-div {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-page .login-right h2 {
+  font-weight: 600;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+.login-page .login-right .description {
+  font-size: 1rem;
+}
+
+.login-page .login-right form {
+  width: 100%;
+  margin: 1rem 0;
+}
+
+.login-page .login-right form label {
+  font-size: 1rem;
+}
+
+.login-page .login-right form label:nth-child(1) {
+  margin-top: 1rem;
+}
+
+.login-page .login-right form input {
+  width: 95%;
+  height: 30px;
+  font-size: 1rem;
+  padding: 5px;
+  margin-top: .5rem;
+  border: 1px solid rgba(0, 0, 0, 0.455)
+}
+
+.login-page .login-right form button {
+  width: 95%;
+  height: 35px;
+  margin: 2rem auto 0rem auto;
+  text-align: center;
+  cursor: pointer;
+  background-color: #3e8ef7;
+  color: #fff;
+  border: 0;
+  outline: none;
+  transition: 250ms ease-in-out;
+}
+
+.login-page .login-right form button:hover {
+  background-color: #3e8ef7db;
+}
+
+.login-page .login-right .new-client {
+  margin-top: 1rem;
+  font-size: .9rem;
+}
+
+.login-page .login-right .new-client > a {
+  color: #3e8ef7;
+  transition: 250ms ease-in-out;
+}
+
+.login-page .login-right .new-client > a:hover {
+  color: #1d7cf9;
+}
+
+.login-page .login-right .copyright {
+  position: absolute;
+  bottom: 2%;
+}
+
+/* Header */
+header {
+  width: 100%;
+  height: 65px;
+  background-color: #3f51b5;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+  position: fixed;
+  overflow: hidden;
+}
+
+header h1 {
+  font-size: 2rem;
+}
+
+header .user-box {
+  display: flex;
+  gap: 1rem;
+}
+
+header .user-box p {
+  cursor: pointer;
+}
+
+/* Typing Animation */
+.typing {
+  align-items: center;
+  display: flex;
+  height: 17px;
+  padding-top: 4px;
+}
+.typing .dot {
+  animation: mercuryTypingAnimation 1.8s infinite ease-in-out;
+  background-color: #000;
+  border-radius: 50%;
+  height: 5px;
+  margin-right: 4px;
+  vertical-align: middle;
+  width: 5px;
+  display: inline-block;
+}
+.typing .dot:nth-child(1) {
+  animation-delay: 200ms;
+}
+.typing .dot:nth-child(2) {
+  animation-delay: 300ms;
+}
+.typing .dot:nth-child(3) {
+  animation-delay: 400ms;
+}
+.typing .dot:last-child {
+  margin-right: 0;
+}
+
+@keyframes mercuryTypingAnimation {
+  0% {
+    transform: translateY(0px);
+    background-color:#000;
+  }
+  28% {
+    transform: translateY(-7px);
+    background-color:#000;
+  }
+  44% {
+    transform: translateY(0px);
+    background-color: #000;
+  }
+}
+
+/* Chat Product Box */
+.chat-product-box {
+  width: 80vw;
+  height: 90vh;
+  position: absolute;
+  top: 5vh;
+  left: 10vw;
+  background: #fff;
+  overflow: hidden;
+}
