@@ -40,7 +40,7 @@ const Account = () => {
 
           alert('Email successfully updated');
 
-          location.reload();
+          window.location.reload();
         })
         .catch((error) => {
           console.log(error.message);
@@ -79,7 +79,7 @@ const Account = () => {
 
           navigate('/login');
 
-          location.reload();
+          window.location.reload();
         })
         .catch((error) => {
           console.log(error.message);
