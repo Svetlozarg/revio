@@ -21,8 +21,13 @@ const InfoTab = ({
   orderLink,
   discountCode,
   totalSpent,
+  items,
+  paymentGateway,
+  currency,
+  shippingAddress,
 }) => {
   const [open, setOpen] = useState(false);
+  const [openTooltip, setOpenTooltip] = useState(false);
 
   return (
     <div>
@@ -79,7 +84,89 @@ const InfoTab = ({
               <FaRegCalendarAlt />
               Created at:{' '}
             </p>
-            <p className="mb-2 text-gray-500 dark:text-gray-400">{createdAt}</p>
+            <p className="mb-2 text-gray-500 dark:text-gray-400">
+              {createdAt.split('T')[0]} {createdAt.split('T')[1].split('+')[0]}
+            </p>
+          </div>
+
+          {/* Items */}
+          <div className="flex gap-2 items-center justify-start">
+            <p className="mb-2 text-gray-500 dark:text-gray-400 font-bold flex items-center justify-center gap-1">
+              <FaMoneyBillAlt />
+              Items:{' '}
+            </p>
+            <p className="mb-2 text-gray-500 dark:text-gray-400 relative">
+              <span
+                className="cursor-pointer"
+                onClick={() => {
+                  setOpenTooltip(!openTooltip);
+                }}
+              >
+                Show products
+              </span>
+              {openTooltip && (
+                <span className="absolute border-2 border-gray-500 rounded p-2 left-[-70px] bottom-6 bg-white text-black w-[250px]">
+                  {items.map((item) => (
+                    <div key={item.id}>
+                      <p>
+                        {item.name} [{item.quantity}]{' '}
+                        {item.total_discount !== '0.00'
+                          ? `(-${item.total_discount}%)`
+                          : ''}
+                      </p>
+                      <p>{item.variant_title}</p>
+                    </div>
+                  ))}
+                </span>
+              )}
+            </p>
+          </div>
+
+          {/* Total Spent */}
+          <div className="flex gap-2 items-center justify-start">
+            <p className="mb-2 text-gray-500 dark:text-gray-400 font-bold flex items-center justify-center gap-1">
+              <FaMoneyBillAlt />
+              Total spent:{' '}
+            </p>
+            <p className="mb-2 text-gray-500 dark:text-gray-400">
+              {totalSpent} {currency}
+            </p>
+          </div>
+
+          {/* Shipping Address */}
+          <div className="flex gap-2 items-start justify-start">
+            <p className="mb-2 text-gray-500 dark:text-gray-400 font-bold flex items-center justify-center gap-1">
+              <FaMoneyBillAlt />
+              Address:{' '}
+            </p>
+            <p className="mb-2 text-gray-500 dark:text-gray-400">
+              {shippingAddress.address1 +
+                ', ' +
+                shippingAddress.city +
+                ', ' +
+                shippingAddress.province +
+                ', ' +
+                shippingAddress.country_code +
+                ', ' +
+                shippingAddress.zip}
+            </p>
+          </div>
+
+          {/* Payment Gateway */}
+          <div className="flex gap-2 items-center justify-start">
+            <p className="mb-2 text-gray-500 dark:text-gray-400 font-bold flex items-center justify-center gap-1">
+              <FaMoneyBillAlt />
+              Gateway:{' '}
+            </p>
+            <p className="mb-2 text-gray-500 dark:text-gray-400">
+              {paymentGateway.map((item, i) => {
+                if (i + 1 !== paymentGateway.length) {
+                  return <span className="capitalize">{item}, </span>;
+                } else {
+                  return <span className="capitalize">{item}</span>;
+                }
+              })}
+            </p>
           </div>
 
           {/* Note */}
@@ -88,7 +175,9 @@ const InfoTab = ({
               <FaStickyNote />
               Note:{' '}
             </p>
-            <p className="mb-2 text-gray-500 dark:text-gray-400">{note}</p>
+            <p className="mb-2 text-gray-500 dark:text-gray-400">
+              {note !== undefined ? note : '-'}
+            </p>
           </div>
 
           {/* Discount Code */}
@@ -109,23 +198,13 @@ const InfoTab = ({
               Order link:{' '}
             </p>
             <a
-              href="shopify.com"
+              href={orderLink}
               target="_blank"
               className="mb-2 text-blue-600 underline"
+              rel="noreferrer"
             >
-              {orderLink}
+              Click
             </a>
-          </div>
-
-          {/* Total Spent */}
-          <div className="flex gap-2 items-center justify-start">
-            <p className="mb-2 text-gray-500 dark:text-gray-400 font-bold flex items-center justify-center gap-1">
-              <FaMoneyBillAlt />
-              Total spent:{' '}
-            </p>
-            <p className="mb-2 text-gray-500 dark:text-gray-400">
-              {totalSpent}
-            </p>
           </div>
         </div>
       </div>

@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 import AttachedProduct from '../../components/Chat/Attach/AttachedProduct';
 import addProductImage from '../../assets/add-product.png';
 import { FaBolt } from 'react-icons/fa';
-import ThemplatesBox from './Templates/ThemplatesBox';
+import TemplatesBox from './Templates/TemplatesBox';
 
-const DialogFlow = ({ fetchAttachedProducts, onOpen }) => {
+const DialogFlow = ({ fetchAttachedProducts, onOpen, openThemplates }) => {
   const [loading, setLoading] = useState(false);
   const [attachedProducts, setAttachedProducts] = useState([]);
-  const [isOpenThemplatesBox, setIsOpenThemplatesBox] = useState(false);
+  const [isOpenTemplatesBox, setIsOpenTemplatesBox] = useState(false);
 
   // Handle Remove Attached Item
   const productIndex = (index) => {
@@ -161,16 +161,14 @@ const DialogFlow = ({ fetchAttachedProducts, onOpen }) => {
                 type="text"
                 className="flex w-full border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10"
               />
-              {/* Themplate Box */}
-              {isOpenThemplatesBox && <ThemplatesBox />}
               <button
                 className="absolute flex items-center justify-center h-full w-12 right-0 top-0 text-gray-400 hover:text-gray-600"
-                onClick={() => setIsOpenThemplatesBox(!isOpenThemplatesBox)}
+                onClick={openThemplates}
               >
                 {/* Thempalte Button */}
                 <FaBolt
                   onClose={() => {
-                    setIsOpenThemplatesBox(false);
+                    setIsOpenTemplatesBox(false);
                   }}
                 />
               </button>

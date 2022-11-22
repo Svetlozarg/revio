@@ -22,6 +22,7 @@ const InfoTab = ({
   currency,
   tags,
   defaultOpen,
+  address,
 }) => {
   const [open, setOpen] = useState(false);
 
@@ -66,14 +67,22 @@ const InfoTab = ({
             <p className="mb-2 text-gray-500 dark:text-gray-400">{createdAt}</p>
           </div>
 
-          {/* Total Spent */}
+          {/* Address */}
           <div className="flex gap-2">
-            <p className="mb-2 text-gray-500 dark:text-gray-400 font-bold flex justify-start items-center gap-1">
-              <FaMoneyBillAlt />
-              Total spent:{' '}
+            <p className="mb-2 text-gray-500 dark:text-gray-400 font-bold flex justify-start items-start gap-1">
+              <FaShoppingCart />
+              Address:{' '}
             </p>
             <p className="mb-2 text-gray-500 dark:text-gray-400">
-              {totalSpent}
+              {address.address1 +
+                ', ' +
+                address.city +
+                ', ' +
+                address.province +
+                ', ' +
+                address.country_code +
+                ', ' +
+                address.zip}
             </p>
           </div>
 
@@ -85,6 +94,17 @@ const InfoTab = ({
             </p>
             <p className="mb-2 text-gray-500 dark:text-gray-400">
               {ordersCount}
+            </p>
+          </div>
+
+          {/* Total Spent */}
+          <div className="flex gap-2">
+            <p className="mb-2 text-gray-500 dark:text-gray-400 font-bold flex justify-start items-center gap-1">
+              <FaMoneyBillAlt />
+              Total spent:{' '}
+            </p>
+            <p className="mb-2 text-gray-500 dark:text-gray-400">
+              {totalSpent} {currency}
             </p>
           </div>
 
