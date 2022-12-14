@@ -7,11 +7,10 @@ const RightSide = ({ ordersArr }) => {
 
   useEffect(() => {
     setOrdersObj(ordersArr);
-    console.log(ordersArr);
   }, [ordersArr]);
 
   return (
-    <div className="flex flex-col py-8 pl-1 pr-1 w-80 bg-white flex-shrink-0 mr-4">
+    <div className="flex flex-col py-8 pl-1 pr-1 w-80 bg-white flex-shrink-0 mr-4 rounded-2xl">
       <div className="h-full flex flex-col items-start justify-start w-full overflow-y-scroll">
         <div className="ml-2 font-bold text-2xl mb-4">Details</div>
 
@@ -38,7 +37,7 @@ const RightSide = ({ ordersArr }) => {
                   />
                 );
               }
-            })}+
+            })}
           {ordersObj.length !== 0 &&
             ordersObj.map((order) => (
               <OrderTab

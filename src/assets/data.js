@@ -507,32 +507,25 @@ export const links = [
     title: 'Dashboard',
     links: [
       {
-        name: 'ecommerce',
+        name: 'dashboard',
         icon: <FiShoppingBag />,
       },
-    ],
-  },
-
-  {
-    title: 'Pages',
-    links: [
       {
-        name: 'orders',
+        name: 'inbox',
         icon: <AiOutlineShoppingCart />,
       },
       {
-        name: 'reviews',
+        name: 'broadcast',
         icon: <FiStar />,
       },
       {
-        name: 'messages',
+        name: 'integrates',
         icon: <FiEdit />,
       },
-    ],
-  },
-  {
-    title: 'Settings',
-    links: [
+      {
+        name: 'automations',
+        icon: <FiEdit />,
+      },
       {
         name: 'settings',
         icon: <FiSettings />,
@@ -5388,4 +5381,79 @@ export const PyramidData = [
   { x: 'Meat, Poultry, Fish', y: 475, text: '475 cal' },
   { x: 'Fruits', y: 520, text: '520 cal' },
   { x: 'Bread, Rice, Pasta', y: 930, text: '930 cal' },
+];
+
+export const chatUsersData = [
+  {
+    short: 'SG',
+    name: 'Svetlozar Georgiev',
+  },
+  {
+    short: 'JS',
+    name: 'Jhin Smith',
+  },
+  {
+    short: 'JB',
+    name: 'James Bond',
+  },
+  {
+    short: 'JL',
+    name: 'Jennifer Lawrence',
+  },
+  {
+    short: 'MR',
+    name: 'Margot Robbie',
+  },
+  {
+    short: 'JD',
+    name: 'Johnny Depp',
+  },
+  {
+    short: 'SG',
+    name: 'Svetlozar Georgiev',
+  },
+  {
+    short: 'JS',
+    name: 'Jhin Smith',
+  },
+  {
+    short: 'JB',
+    name: 'James Bond',
+  },
+  {
+    short: 'JL',
+    name: 'Jennifer Lawrence',
+  },
+  {
+    short: 'MR',
+    name: 'Margot Robbie',
+  },
+  {
+    short: 'JD',
+    name: 'Johnny Depp',
+  },
+  {
+    short: 'SG',
+    name: 'Svetlozar Georgiev',
+  },
+  {
+    short: 'JS',
+    name: 'Jhin Smith',
+  },
+  {
+    short: 'JB',
+    name: 'James Bond',
+  },
+  {
+    short: 'JL',
+    name: 'Jennifer Lawrence',
+  },
+  {
+    short: 'MR',
+    name: 'Margot Robbie',
+  },
+  {
+    short: 'JD',
+    name: 'Johnny Depp',
+  },
 ];

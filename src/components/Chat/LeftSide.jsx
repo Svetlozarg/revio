@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import logo from '../../assets/small_logo.png';
 import { useNavigate } from 'react-router-dom';
+import { chatUsersData } from '../../assets/data';
+
 const LeftSide = ({ getUrl }) => {
   const navigate = useNavigate();
   const [isOpen, setOpen] = useState(false);
@@ -11,7 +13,7 @@ const LeftSide = ({ getUrl }) => {
     let search = window.location.search;
 
     if (search === '' || search === null || search === undefined) {
-      navigate(`/messages?phone=${chatUser}`);
+      navigate(`/inbox?phone=${chatUser}`);
     } else {
       getUrl(search);
     }
@@ -24,7 +26,7 @@ const LeftSide = ({ getUrl }) => {
   }, [chatUser]);
 
   return (
-    <div className="flex flex-col py-8 pl-6 pr-2 w-64 bg-white flex-shrink-0">
+    <div className="flex flex-col py-8 pl-6 pr-2 w-64 bg-white flex-shrink-0 rounded-2xl">
       <div className="flex flex-row items-center justify-center h-12 w-full">
         {/* Chat Logo */}
         <img src={logo} style={{ width: '35px' }} alt="" />
@@ -123,15 +125,26 @@ const LeftSide = ({ getUrl }) => {
           className="flex flex-col space-y-1 mt-4 -mx-2 overflow-y-auto"
           style={{ height: '570px' }}
         >
-          <button className="flex flex-row items-center bg-gray-200 rounded-xl p-2">
-            <div className="flex items-center justify-center h-8 w-8 bg-indigo-200 rounded-full">
-              SG
-            </div>
-            <div className="ml-2 text-sm font-semibold">Svetlozar Georgiev</div>
-            <div className="flex items-center justify-center ml-auto text-xs text-white bg-red-500 h-4 w-4 rounded leading-none">
-              8
-            </div>
-          </button>
+          {chatUsersData.map((user, i) => {
+            return (
+              <button
+                disabled={i === 0 ? false : true}
+                className={
+                  i === 0
+                    ? 'flex flex-row items-center bg-gray-200 rounded-xl p-2'
+                    : 'flex flex-row items-center bg-gray-100 rounded-xl p-2'
+                }
+              >
+                <div className="flex items-center justify-center h-8 w-8 bg-indigo-200 rounded-full">
+                  {user.short}
+                </div>
+                <div className="ml-2 text-sm font-semibold">{user.name}</div>
+                <div className="flex items-center justify-center ml-auto text-xs text-white bg-red-500 h-4 w-4 rounded leading-none">
+                  8
+                </div>
+              </button>
+            );
+          })}
         </div>
       </div>
     </div>

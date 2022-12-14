@@ -4,14 +4,14 @@ import { FiSettings } from 'react-icons/fi';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 import { useAuth } from './contexts/ContextProvider';
 
-import { Navbar, Footer, Sidebar, ThemeSettings } from './components';
-import { Ecommerce, Orders, Reviews } from './pages';
+import { Navbar, Sidebar, ThemeSettings } from './components';
+import { Dashboard, Orders, Reviews } from './pages';
 import './App.css';
 import { useStateContext } from './contexts/ContextProvider';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Account from './pages/Account';
-import Chat from './pages/Chat';
+import Inbox from './pages/Inbox';
 import Settings from './pages/Settings';
 
 const App = () => {
@@ -86,18 +86,17 @@ const App = () => {
                     <Route path="/register" element={<Register />} />
 
                     {/* Dashboard  */}
-                    <Route path="/" element={<Ecommerce />} />
-                    <Route path="/ecommerce" element={<Ecommerce />} />
+                    <Route path="/" element={<Dashboard />} />
+                    <Route path="/dashboard" element={<Dashboard />} />
 
                     {/* Pages  */}
                     <Route path="/orders" element={<Orders />} />
                     <Route path="/reviews" element={<Reviews />} />
                     <Route path="/account" element={<Account />} />
-                    <Route path="/messages" element={<Chat />} />
+                    <Route path="/inbox" element={<Inbox />} />
                     <Route path="/settings" element={<Settings />} />
                   </Routes>
                 </div>
-                <Footer />
               </div>
             </div>
           </BrowserRouter>

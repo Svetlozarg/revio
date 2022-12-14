@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import AttachedProduct from '../../components/Chat/Attach/AttachedProduct';
 import addProductImage from '../../assets/add-product.png';
 import { FaBolt } from 'react-icons/fa';
@@ -8,6 +8,8 @@ const DialogFlow = ({ fetchAttachedProducts, onOpen, openThemplates }) => {
   const [loading, setLoading] = useState(false);
   const [attachedProducts, setAttachedProducts] = useState([]);
   const [isOpenTemplatesBox, setIsOpenTemplatesBox] = useState(false);
+  const [messageFlow, setMessageFlow] = useState([]);
+  const message = useRef();
 
   // Handle Remove Attached Item
   const productIndex = (index) => {
@@ -30,12 +32,71 @@ const DialogFlow = ({ fetchAttachedProducts, onOpen, openThemplates }) => {
     }, 100);
   };
 
+  const sendMessage = (e) => {
+    if (e.key === 'Enter') {
+      const msgArray = JSON.parse(localStorage.getItem('message'));
+      if (msgArray) {
+        if (attachedProducts.length !== 0) {
+          const msgObj = {
+            message: message.current.value,
+            prodcuts: attachedProducts,
+          };
+          msgArray.push(msgObj);
+
+          localStorage.setItem('message', JSON.stringify(msgArray));
+        } else {
+          const msgObj = {
+            message: message.current.value,
+            prodcuts: [],
+          };
+          msgArray.push(msgObj);
+
+          localStorage.setItem('message', JSON.stringify(msgArray));
+        }
+      } else {
+        if (attachedProducts.length !== 0) {
+          const msgObj = [
+            {
+              message: message.current.value,
+              prodcuts: attachedProducts,
+            },
+          ];
+
+          localStorage.setItem('message', JSON.stringify(msgObj));
+        } else {
+          const msgObj = [
+            {
+              message: message.current.value,
+              prodcuts: [],
+            },
+          ];
+
+          localStorage.setItem('message', JSON.stringify(msgObj));
+        }
+      }
+
+      updateMessageFlow(msgArray);
+      message.current.value = '';
+      setAttachedProducts([]);
+    }
+  };
+
+  const updateMessageFlow = (msgArray) => {
+    setMessageFlow(msgArray);
+  };
+
+  useEffect(() => {
+    if (setMessageFlow(JSON.parse(localStorage.getItem('message')))) {
+      setMessageFlow(JSON.parse(localStorage.getItem('message')));
+    }
+  }, []);
+
   useEffect(() => {
     setAttachedProducts(fetchAttachedProducts);
   }, [fetchAttachedProducts]);
 
   return (
-    <div className="flex flex-col flex-auto h-full p-6" onOpen={onOpen}>
+    <div className="flex flex-col flex-auto h-full px-6" onOpen={onOpen}>
       <div className="flex flex-col flex-auto flex-shrink-0 rounded-2xl bg-gray-100 h-full p-4">
         <div className="flex flex-col h-full overflow-x-auto mb-4">
           <div className="flex flex-col h-full">
@@ -69,7 +130,7 @@ const DialogFlow = ({ fetchAttachedProducts, onOpen, openThemplates }) => {
                   <div className="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
                     A
                   </div>
-                  <div className="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl">
+                  <div className="relative mr-3 text-sm bg-[#dcf8c6] py-2 px-4 shadow rounded-xl">
                     <div>I'm ok what about you?</div>
                   </div>
                 </div>
@@ -100,45 +161,55 @@ const DialogFlow = ({ fetchAttachedProducts, onOpen, openThemplates }) => {
                   <div className="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
                     A
                   </div>
-                  <div className="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl">
+                  <div className="relative mr-3 text-sm bg-[#dcf8c6] py-2 px-4 shadow rounded-xl">
                     <div>
                       Lorem ipsum dolor sit, amet consectetur adipisicing. ?
                     </div>
-                    <div className="flex gap-1 absolute text-xs bottom-0 right-0 -mb-5 mr-2 text-gray-500">
-                      <p>Seen</p>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        version="1.1"
-                        viewBox="0 0 16 16"
-                        width="16"
-                        height="16"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="1.5"
-                      >
-                        <path d="m1.75 9.75 2.5 2.5m3.5-4 2.5-2.5m-4.5 4 2.5 2.5 6-6.5" />{' '}
-                      </svg>
-                    </div>
                   </div>
                 </div>
               </div>
-              <div className="col-start-1 col-end-8 p-3 rounded-lg">
-                <div className="flex flex-row items-center">
-                  <div className="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
-                    A
-                  </div>
-                  <div className="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl">
-                    {/* Typing animation */}
-                    <div className="typing">
-                      <div className="dot"></div>
-                      <div className="dot"></div>
-                      <div className="dot"></div>
+
+              {messageFlow?.map((msg, i) => {
+                return (
+                  <div
+                    key={i}
+                    className="col-start-6 col-end-13 p-3 rounded-lg"
+                  >
+                    <div className="flex items-center justify-start flex-row-reverse">
+                      <div className="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
+                        A
+                      </div>
+                      <div className="relative mr-3 text-sm bg-[#dcf8c6] py-2 px-4 shadow rounded-xl">
+                        {msg.message && (
+                          <p
+                            className={msg.prodcuts.length !== 0 ? 'pt-1' : ''}
+                          >
+                            {msg.message}
+                          </p>
+                        )}
+                        <div
+                          className={
+                            msg.prodcuts.length !== 0
+                              ? 'snap-y snap-mandatory h-full w-full mx:auto overflow-auto flex gap-2 pb-1'
+                              : ''
+                          }
+                          style={msg.message ? { marginTop: '1rem' } : {}}
+                        >
+                          {msg.prodcuts?.map((product) => {
+                            return (
+                              <img
+                                className="w-auto h-36 rounded-2xl snap-start"
+                                src={product.image}
+                                alt=""
+                              />
+                            );
+                          })}
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -158,8 +229,10 @@ const DialogFlow = ({ fetchAttachedProducts, onOpen, openThemplates }) => {
           <div className="flex-grow ml-4">
             <div className="relative w-full">
               <input
+                ref={message}
                 type="text"
                 className="flex w-full border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10"
+                onKeyDown={sendMessage}
               />
               <button
                 className="absolute flex items-center justify-center h-full w-12 right-0 top-0 text-gray-400 hover:text-gray-600"

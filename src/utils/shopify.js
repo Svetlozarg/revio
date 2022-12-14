@@ -6,7 +6,7 @@ export async function storeFrontRequest({ query, variables }) {
     url: `https://innowave-dev.myshopify.com/api/2022-07/graphql.json`,
     method: 'POST',
     headers: {
-      'X-Shopify-Storefront-Access-Token': '0210307c4e2933c9f24d49e7d20d90c8',
+      'X-Shopify-Storefront-Access-Token': '1bca17155738e0ebbea11fee6f784279',
     },
     data: {
       query: query,
