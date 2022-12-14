@@ -9,7 +9,6 @@ const Product = ({
   alreadySelected,
 }) => {
   const [selected, setSelected] = useState(false);
-
   useEffect(() => {
     if (selected) {
       isSelected({
@@ -52,7 +51,7 @@ const Product = ({
         {/* Product Image */}
         <img
           className="p-2 rounded-t-lg w-auto m-auto"
-          src={image}
+          src={image + '&width=412'}
           loading="lazy"
           alt="product"
         />

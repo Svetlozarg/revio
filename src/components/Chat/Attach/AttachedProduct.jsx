@@ -31,7 +31,7 @@ const AttachedProduct = ({ title = '', image = '', deleteProduct = '' }) => {
       </div>
       <img
         className="rounded-t-lg  w-full h-full object-cover rounded-md"
-        src={image}
+        src={image + '&width=512'}
         alt=""
       />
     </div>
