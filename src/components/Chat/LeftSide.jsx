@@ -36,7 +36,7 @@ const LeftSide = ({ getUrl }) => {
         <div className="flex flex-row items-center justify-between text-sm">
           <span className="font-bold">Active Conversations</span>
           {/* Application Button */}
-          <span className="flex items-center justify-center bg-gray-300 h-4 w-4 rounded-3xl mr-5">
+          {/* <span className="flex items-center justify-center bg-gray-300 h-4 w-4 rounded-3xl mr-5">
             <button
               id="dropdownRadioButton"
               data-dropdown-toggle="dropdownDefaultRadio"
@@ -118,7 +118,7 @@ const LeftSide = ({ getUrl }) => {
                 </ul>
               </div>
             )}
-          </span>
+          </span> */}
         </div>
         {/* Chats */}
         <div

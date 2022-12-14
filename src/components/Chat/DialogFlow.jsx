@@ -9,7 +9,7 @@ const DialogFlow = ({ fetchAttachedProducts, onOpen, openThemplates }) => {
   const [attachedProducts, setAttachedProducts] = useState([]);
   const [isOpenTemplatesBox, setIsOpenTemplatesBox] = useState(false);
   const [messageFlow, setMessageFlow] = useState([]);
-  const message = useRef();
+  const message = useRef('');
 
   // Handle Remove Attached Item
   const productIndex = (index) => {
@@ -33,6 +33,8 @@ const DialogFlow = ({ fetchAttachedProducts, onOpen, openThemplates }) => {
   };
 
   const sendMessage = (e) => {
+    if (message.current.value === '') return;
+
     if (e.key === 'Enter') {
       const msgArray = JSON.parse(localStorage.getItem('message'));
       if (msgArray) {
@@ -175,7 +177,7 @@ const DialogFlow = ({ fetchAttachedProducts, onOpen, openThemplates }) => {
                     key={i}
                     className="col-start-6 col-end-13 p-3 rounded-lg"
                   >
-                    <div className="flex items-center justify-start flex-row-reverse">
+                    <div className="flex items-start justify-start flex-row-reverse">
                       <div className="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
                         A
                       </div>
@@ -193,7 +195,11 @@ const DialogFlow = ({ fetchAttachedProducts, onOpen, openThemplates }) => {
                               ? 'snap-y snap-mandatory h-full w-full mx:auto overflow-auto flex gap-2 pb-1'
                               : ''
                           }
-                          style={msg.message ? { marginTop: '1rem' } : {}}
+                          style={
+                            msg.message && msg.prodcuts.length !== 0
+                              ? { marginTop: '1rem' }
+                              : {}
+                          }
                         >
                           {msg.prodcuts?.map((product) => {
                             return (
